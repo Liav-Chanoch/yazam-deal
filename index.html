@@ -63,14 +63,13 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 /* ───────── hero ───────── */
 .hero{position:relative;height:100vh;min-height:620px;color:#fff;text-align:center;overflow:hidden;isolation:isolate}
-.hero__bg{position:absolute;inset:0;z-index:-1;display:grid;grid-template-columns:1fr minmax(0,min(43vw,460px)) 1fr}
-.hero__bg::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.18)}
-.hero__side{--c1:#10403f;--c2:#2d6b78;--ang:160deg;background-image:linear-gradient(var(--ang),var(--c1),var(--c2));background-size:cover;background-position:0 0}
-.hero__side--b{--c1:#2d6b78;--c2:#10403f}
-.hero__center{--c1:#a8a39b;--c2:#6f6a63;--ang:180deg;background-image:linear-gradient(var(--ang),var(--c1),var(--c2));background-size:100% 140%;background-position:0 0;animation:drift1 9s ease-in-out infinite alternate}
 @keyframes drift{from{background-position:center,0 0}to{background-position:center,0 100%}}
-@keyframes drift1{from{background-position:0 0}to{background-position:0 100%}}
-.hero__sound{position:absolute;inset-inline-end:16px;bottom:16px;width:36px;height:36px;display:grid;place-items:center;opacity:.9}
+.hero__slides{position:absolute;inset:0;z-index:-1;background:#10303a}
+.hero__slides::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 38% at 50% 42%,rgba(0,0,0,.42),transparent 100%),linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.24) 38%,rgba(0,0,0,.36))}
+.slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1);transition:opacity 1.4s ease}
+.slide.prev{transform:scale(1.08)}
+.slide.active{opacity:1;transform:scale(1.08);transition:opacity 1.4s ease,transform 6s linear}
+.hero__text{text-shadow:0 2px 16px rgba(0,0,0,.35)}
 .hero__text{position:absolute;top:225px;inset-inline-start:50%;transform:translateX(50%);width:min(365px,90vw)}
 .hero__text h1,.title-h{font-size:70px;line-height:70px;font-weight:400}
 .hero__text .subtitle,.subtitle{font-size:18px;line-height:21.6px;margin-top:20px}
@@ -264,18 +263,17 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 <!-- ───────── hero (video placeholder) ───────── -->
 <section class="hero">
-  <div class="hero__bg" aria-hidden="true">
-    <div class="hero__side ph"></div>
-    <div class="hero__center ph"></div>
-    <div class="hero__side hero__side--b ph"></div>
+  <div class="hero__slides" id="slides" aria-hidden="true">
+    <div class="slide active" style="background-image:url(images/slide-1.jpg)"></div>
+    <div class="slide" style="background-image:url(images/slide-2.jpg)"></div>
+    <div class="slide" style="background-image:url(images/slide-3.jpg)"></div>
+    <div class="slide" style="background-image:url(images/slide-4.webp)"></div>
+    <div class="slide" style="background-image:url(images/slide-5.jpg)"></div>
   </div>
   <div class="hero__text">
     <h1>כותרת ראשית<br>בשורה שנייה</h1>
     <p class="subtitle">לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה, דס איאקוליס וולופטה דיאם.</p>
   </div>
-  <button class="hero__sound" aria-label="סאונד">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
-  </button>
 </section>
 
 <!-- ───────── intro ───────── -->
@@ -524,6 +522,19 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   window.addEventListener('scroll',onScroll,{passive:true});
   window.addEventListener('resize',onScroll);
   onScroll();
+
+  /* hero slideshow: crossfade every 6s, pauses while tab is hidden */
+  var slides=$$('#slides .slide'), cur=0, slideTimer;
+  function nextSlide(){
+    var old=slides[cur];
+    slides.forEach(function(s){s.classList.remove('prev')});
+    old.classList.remove('active'); old.classList.add('prev');
+    cur=(cur+1)%slides.length;
+    slides[cur].classList.add('active');
+  }
+  function startSlides(){clearInterval(slideTimer);slideTimer=setInterval(nextSlide,6000)}
+  document.addEventListener('visibilitychange',function(){document.hidden?clearInterval(slideTimer):startSlides()});
+  startSlides();
 
   /* mobile menu */
   var btn=$('#menuBtn');
