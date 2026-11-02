@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Company Global | אתר לדוגמה</title>
+<meta name="description" content="Layout mockup with dummy content.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f9f7f5;
+  --ink:#000;
+  --dark:#1f1e1e;
+  --cookie:#3a3737;
+  --wheat:#f5deb3;
+  --gold:#d5bb84;
+  --tan:#7a6a4a;
+  --font:"Assistant","Open Sans",Arial,sans-serif;
+  --icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='white' stroke-opacity='.45' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='8' y='12' width='48' height='40' rx='3'/%3E%3Ccircle cx='24' cy='26' r='4'/%3E%3Cpath d='M8 44l14-12 10 8 8-6 16 14'/%3E%3C/svg%3E");
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 16px/1.8 var(--font);direction:rtl;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+ul,ol{margin:0;padding:0;list-style:none}
+h1,h2,h3,p{margin:0}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+
+/* image / video placeholder */
+.ph{
+  background-image:var(--icon),linear-gradient(var(--ang,135deg),var(--c1,#b9b2a8),var(--c2,#8f8a82));
+  background-position:center,0 0;
+  background-size:56px,cover;
+  background-repeat:no-repeat;
+}
+
+/* ───────── header ───────── */
+.site-header{position:fixed;top:0;inset-inline:0;z-index:100;color:#fff;background:transparent;transition:background .3s,color .3s}
+.site-header.is-solid{background:var(--cream);color:#000}
+.site-header .container{display:flex;align-items:center;justify-content:space-between;padding:16px 60px;position:relative;max-width:100%}
+.menu{width:38.8%;max-width:640px}
+.menu>ul{display:flex}
+.menu li{position:relative}
+.menu li>a{display:block;padding:10px;font-size:18px;line-height:1.4;white-space:normal;cursor:pointer}
+.menu .has-sub>a{white-space:nowrap}
+.menu .has-sub>a::after{content:"";display:inline-block;width:6px;height:6px;margin-inline-start:8px;border:solid currentColor;border-width:0 1.5px 1.5px 0;transform:rotate(45deg) translateY(-3px)}
+.sub-menu{display:none;position:absolute;top:100%;inset-inline-start:0;min-width:160px;background:var(--cream);color:#000;box-shadow:0 6px 18px rgba(0,0,0,.12);padding:6px 0}
+.sub-menu a{display:block;padding:8px 18px;font-size:16px;white-space:nowrap}
+.sub-menu a:hover{background:rgba(0,0,0,.05)}
+.menu li:hover>.sub-menu,.menu li:focus-within>.sub-menu{display:block}
+.logo{position:absolute;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;line-height:1;direction:ltr;width:max-content}
+.logo__mark{font:500 46px/1 "Dancing Script",cursive}
+.logo__sub{font-size:8px;letter-spacing:2.4px;margin-top:2px}
+.langs{display:flex;direction:ltr}
+.langs a{display:block;padding:10px;font-size:18px;line-height:1.4;text-transform:uppercase}
+.menu-icon{display:none;width:44px;height:44px;position:relative}
+.menu-icon span,.menu-icon::before,.menu-icon::after{content:"";position:absolute;inset-inline:10px;height:2px;background:currentColor}
+.menu-icon::before{top:14px}.menu-icon span{top:21px}.menu-icon::after{top:28px}
+
+/* ───────── hero ───────── */
+.hero{position:relative;height:100vh;min-height:620px;color:#fff;text-align:center;overflow:hidden;isolation:isolate}
+.hero__bg{position:absolute;inset:0;z-index:-1;display:grid;grid-template-columns:1fr minmax(0,min(43vw,460px)) 1fr}
+.hero__bg::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.18)}
+.hero__side{--c1:#10403f;--c2:#2d6b78;--ang:160deg;background-image:linear-gradient(var(--ang),var(--c1),var(--c2));background-size:cover;background-position:0 0}
+.hero__side--b{--c1:#2d6b78;--c2:#10403f}
+.hero__center{--c1:#a8a39b;--c2:#6f6a63;--ang:180deg;background-image:linear-gradient(var(--ang),var(--c1),var(--c2));background-size:100% 140%;background-position:0 0;animation:drift1 9s ease-in-out infinite alternate}
+@keyframes drift{from{background-position:center,0 0}to{background-position:center,0 100%}}
+@keyframes drift1{from{background-position:0 0}to{background-position:0 100%}}
+.hero__sound{position:absolute;inset-inline-end:16px;bottom:16px;width:36px;height:36px;display:grid;place-items:center;opacity:.9}
+.hero__text{position:absolute;top:225px;inset-inline-start:50%;transform:translateX(50%);width:min(365px,90vw)}
+.hero__text h1,.title-h{font-size:70px;line-height:70px;font-weight:400}
+.hero__text .subtitle,.subtitle{font-size:18px;line-height:21.6px;margin-top:20px}
+
+/* ───────── intro ───────── */
+.intro{background:var(--cream);text-align:center}
+.intro__inner{width:365px;max-width:90vw;margin:0 auto;padding:45px 0 60px}
+.intro__inner .content{margin-top:34px}
+.intro__inner .content p{line-height:28.8px}
+
+/* ───────── projects accordion ───────── */
+.gallery{background:#fff}
+@media (min-width:992px){.gallery{margin-bottom:50px}}
+.gallery__top{width:50%;margin:0 auto 30px;padding:0 20px;text-align:center}
+.gallery__top h2{margin:30px 0 0;font-size:40px;line-height:72px;font-weight:400}
+.gallery__wrap{display:flex;flex-wrap:nowrap;overflow:hidden;width:100%;height:500px}
+.card{position:relative;display:flex;flex-direction:column;flex:1 1 0;height:500px;overflow:hidden;transition:flex .8s cubic-bezier(.29,0,.2,1);will-change:flex;color:#fff;cursor:pointer}
+.card:not(:first-child){border-inline-start:1px solid #fff}
+.card.active{flex:4 1 0}
+.card__media{position:absolute;inset:0}
+.card__media.ph{background-size:56px,cover}
+.card__info{position:relative;z-index:2;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:30px 12px;background:rgba(0,0,0,.2);opacity:0}
+.card.active .card__info{opacity:1;transition:opacity .5s cubic-bezier(.29,0,.2,1) .8s}
+.card__item{width:100%;max-width:90%;overflow:hidden;text-align:center}
+.card__status{display:flex;align-items:center;justify-content:center;color:var(--wheat);font-size:16px;line-height:28.8px}
+.card__status::before,.card__status::after{content:"";display:block;width:1em;margin:0 .5em;border-top:1px solid}
+.card__title{font-size:30px;line-height:1.5;color:#fff}
+.card__sub{font-size:18px;line-height:1;margin-bottom:20px;min-height:18px}
+.card__btn{position:relative;display:flex;align-items:center;justify-content:center;width:fit-content;margin:0 auto;font-size:16px;line-height:1;white-space:nowrap}
+.card__btn::after{content:"";position:absolute;inset-inline:0;bottom:-3px;height:1px;background:#fff}
+
+/* ───────── split sections ───────── */
+.split{display:flex;max-width:83%;margin:0 auto;background:transparent}
+.split--reverse{flex-direction:row-reverse;background:#fff}
+.split__text{flex:0 0 50%;display:flex;align-items:center;justify-content:center}
+.split__inner{width:365px;max-width:100%;padding:0}
+.split__media{flex:0 0 50%;position:relative}
+.split__media .ph{aspect-ratio:1/1;width:100%}
+.split h2{font-size:40px;line-height:40px;font-weight:700}
+.split .content p{margin-top:16px;line-height:28.8px}
+.points{margin:16px 0;counter-reset:n;list-style:decimal inside}
+.points li{padding:20.8px 0;line-height:16px;border-bottom:1px solid rgba(0,0,0,.2)}
+.points li::marker{color:var(--tan)}
+.points li{line-height:20px}
+
+.carousel-title{text-align:center}
+.carousel{position:relative;margin-top:20px;overflow:hidden}
+.carousel__track{display:flex;transition:transform .6s cubic-bezier(.29,0,.2,1)}
+.carousel__item{flex:0 0 100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-bottom:28px}
+.carousel__item h3{font-size:32px;line-height:32px;font-weight:500}
+.carousel__item p{margin-top:12px;font-size:18px;line-height:21.6px;text-align:start}
+.dots{position:absolute;inset-inline:0;bottom:0;display:flex;justify-content:center;gap:5px}
+.dots button{width:8px;height:8px;border-radius:5px;background:#000;transition:width .3s,opacity .3s;opacity:.35}
+.dots button.on{width:20px;opacity:1}
+.video{position:relative;display:block;overflow:hidden}
+.video .ph{--c1:#3a414d;--c2:#12151a;width:100%;aspect-ratio:1/1;animation:drift 9s ease-in-out infinite alternate;background-size:56px,140% 140%}
+.video__text{position:absolute;inset-inline:0;bottom:0;padding:0 0 40px;color:#fff;text-align:center}
+.video__text h2{font-size:40px;line-height:40px;font-weight:700}
+.video__text p{font-size:22px;line-height:33px}
+
+/* ───────── scroll story ───────── */
+.story{--p:0;position:relative;height:calc(100vh + 450px);margin-top:0}
+.story__sticky{position:sticky;top:0;height:100vh;overflow:hidden}
+.story__media{position:absolute;--c1:#79b4dc;--c2:#2b8ea8;--ang:180deg;background-position:50% 22%,0 0;
+  left:calc(8.5% * (1 - var(--p)));
+  right:calc(8.5% + 55% * var(--p));
+  top:calc(12vh * (1 - var(--p)));bottom:calc(5vh * (1 - var(--p)))}
+.story__overlay{position:absolute;left:calc(50% - 31.7% * var(--p));top:calc(62% - 7% * var(--p));transform:translate(-50%,-50%);width:min(374px,32vw);padding:0 10px;color:#fff;text-align:center;text-shadow:0 1px 8px rgba(0,0,0,.25)}
+.story__overlay h2{font-size:32px;line-height:32px;font-weight:700}
+.story__overlay p{margin-top:14px;font-size:16px;line-height:20.8px}
+.tiles{position:absolute;top:50%;right:10%;width:44%;display:flex;gap:16px;
+  opacity:calc((var(--p) - .55) * 2.2);transform:translateY(calc(-50% + 40px * (1 - var(--p))))}
+.tile{flex:1;text-align:center}
+.tile .ph{aspect-ratio:3/5;width:100%}
+.tile h3{margin:18px 0 10px;font-size:17.6px;line-height:17.6px;font-weight:700}
+.tile p{font-size:16px;line-height:20.8px}
+
+/* ───────── contact ───────── */
+.newsletter{position:relative;background:#fff;padding:40px 0;box-shadow:0 0 8px 2px rgba(0,0,0,.22)}
+.newsletter .container{margin:0 5%;text-align:center}
+.newsletter h2{font-size:24px;line-height:43.2px;font-weight:700}
+.form-row{display:flex;gap:16px;margin-top:40px}
+.form-row input[type=text],.form-row input[type=email],.form-row input[type=tel]{flex:1;min-width:0;height:45px;padding:0 10px;border:1px solid #000;border-radius:0;font:400 16px var(--font);text-align:start;background:#fff}
+.form-row input::placeholder{color:#000;opacity:1}
+.btn-submit{flex:0 0 184px;height:40px;margin-top:2.5px;padding:0 20px;background:#000;color:#fff;border:2px solid #000;border-radius:5px;font-size:16px;line-height:36px}
+.consent{display:flex;align-items:flex-start;gap:8px;margin-top:22px;text-align:start;line-height:22px}
+.consent input{margin:5px 0 0;flex:none}
+.consent u{text-decoration:underline}
+
+/* ───────── footer ───────── */
+.site-footer{background:var(--dark);color:#fff;padding:20px 0 0}
+.site-footer .container{margin:0 5%;display:flex;align-items:flex-start;justify-content:space-between;padding-bottom:20px}
+.f-cols{display:flex;gap:120px}
+.f-col h4{margin:0 0 6px;font-size:16px;line-height:28.8px;font-weight:700}
+.f-col a{display:block;line-height:28.8px;opacity:.95}
+.f-col a:hover{text-decoration:underline}
+.f-logo{color:#fff}
+.social{background:var(--dark);color:#fff;display:flex;justify-content:center;align-items:center;gap:28px;padding:20px 0 100px}
+.social a{display:flex;align-items:center;gap:8px;font-size:11px;line-height:1}
+
+/* ───────── floating bar + cookies ───────── */
+.float{position:fixed;inset-inline:0;bottom:50px;z-index:90;display:flex;justify-content:center;align-items:center;gap:10px;padding:10px;pointer-events:none}
+.float>*{pointer-events:auto}
+.glass{display:flex;align-items:center;justify-content:center;gap:10px;width:180px;height:50px;border-radius:5px;background:rgba(249,247,245,.9);backdrop-filter:blur(2px);box-shadow:4px 4px 4px rgba(0,0,0,.2),-4px -4px 4px rgba(255,255,255,.5);font-weight:700;font-size:18px;line-height:32.4px;color:#000}
+.wa{width:40px;height:40px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 0 0 3px rgba(255,255,255,.55),3px 3px 6px rgba(0,0,0,.25)}
+.cookies{position:fixed;inset-inline:0;bottom:0;z-index:150;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:10px 14px;background:var(--cookie);color:#fff;font-size:13px;line-height:1.55}
+.cookies[hidden]{display:none}
+.cookies u{text-decoration:underline}
+.cookies button{flex:0 0 auto;width:78px;height:32px;background:#000;border:1px solid #fff;color:#fff;font-size:14px}
+
+/* ───────── responsive ───────── */
+@media (max-width:990px){
+  .site-header .container{padding:10px 18px}
+  .menu-icon{display:block}
+  .menu{position:fixed;inset:0;width:auto;max-width:none;background:var(--cream);color:#000;padding:80px 28px 28px;display:none;overflow:auto}
+  .menu.open{display:block}
+  .menu>ul{flex-direction:column}
+  .menu li>a{font-size:22px;padding:12px 0}
+  .sub-menu{position:static;display:block;box-shadow:none;background:none;padding:0 14px}
+  .menu-icon,.logo,.langs{position:relative;z-index:2}
+  .logo{position:absolute}
+  .menu{z-index:1}
+  .card__media.ph{background-position:50% 18%,0 0}
+  .logo__mark{font-size:36px}
+  .langs a{font-size:15px;padding:8px}
+  .hero__text h1{font-size:46px;line-height:48px}
+  .hero__text{top:150px}
+  .title-h{font-size:46px;line-height:48px}
+  .gallery__top{width:100%}
+  .gallery__wrap{flex-direction:column;height:auto}
+  .card,.card.active{flex:none;height:300px}
+  .card__info{opacity:1}
+  .card:not(:first-child){border-inline-start:0;border-top:1px solid #fff}
+  .split,.split--reverse{flex-direction:column;max-width:100%;padding:0 20px}
+  .split__text,.split__media{flex:none}
+  .split__text{padding:30px 0}
+  .split__media .ph,.video .ph{aspect-ratio:4/3}
+  .story{height:auto}
+  .story__sticky{position:relative;height:auto;overflow:visible}
+  .story__media{position:relative;inset:auto;height:70vh}
+  .story__media{background-position:50% 20%,0 0}
+  .story__overlay{left:50%;top:35vh;width:80%}
+  .tiles{position:static;opacity:1;transform:none;width:auto;margin:30px 20px;flex-wrap:wrap}
+  .tile{flex:1 1 140px}
+  .form-row{flex-direction:column;gap:12px;margin-top:24px}
+  .btn-submit{flex:none;width:100%;margin-top:0}
+  .f-cols{gap:40px;flex-wrap:wrap}
+  .site-footer .container{flex-direction:column;gap:24px}
+  .float{bottom:70px}
+  .glass{width:auto;flex:1;max-width:180px;font-size:16px}
+  .cookies{flex-direction:column;align-items:stretch;gap:8px}
+  .cookies button{align-self:flex-start}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- ───────── header ───────── -->
+<header class="site-header" id="header">
+  <div class="container">
+    <button class="menu-icon" id="menuBtn" aria-label="תפריט" aria-expanded="false"><span></span></button>
+    <nav class="menu" id="menu" aria-label="ניווט ראשי">
+      <ul>
+        <li><a href="#top">ראשי</a></li>
+        <li><a href="#">אודות</a></li>
+        <li class="has-sub">
+          <a href="#projects">פרויקטים</a>
+          <ul class="sub-menu">
+            <li><a href="#projects">כל הפרויקטים</a></li>
+            <li><a href="#projects">בשיווק</a></li>
+            <li><a href="#projects">מאוכלסים</a></li>
+          </ul>
+        </li>
+        <li><a href="#">מגזין גלובל</a></li>
+        <li><a href="#">מועדון לקוחות</a></li>
+        <li><a href="#contact">צרו קשר</a></li>
+      </ul>
+    </nav>
+    <a class="logo" href="#top" aria-label="Company Global">
+      <span class="logo__mark">Logo</span>
+      <span class="logo__sub">COMPANY GLOBAL</span>
+    </a>
+    <div class="langs" aria-label="שפה">
+      <a href="#">he</a><a href="#">en</a><a href="#">ru</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ───────── hero (video placeholder) ───────── -->
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__side ph"></div>
+    <div class="hero__center ph"></div>
+    <div class="hero__side hero__side--b ph"></div>
+  </div>
+  <div class="hero__text">
+    <h1>כותרת ראשית<br>בשורה שנייה</h1>
+    <p class="subtitle">לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה, דס איאקוליס וולופטה דיאם.</p>
+  </div>
+  <button class="hero__sound" aria-label="סאונד">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
+  </button>
+</section>
+
+<!-- ───────── intro ───────── -->
+<section class="intro">
+  <div class="intro__inner">
+    <h2 class="title-h">כותרת ראשית<br>בשורה שנייה</h2>
+    <p class="subtitle">לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה, דס איאקוליס וולופטה דיאם.</p>
+    <div class="content">
+      <p>לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה.</p>
+      <p>דס איאקוליס וולופטה דיאם. וסטיבולום אי מוסן מנת. קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקט ולנדיניה מנגפק.</p>
+      <p>ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה – לתכי מורגם בורק.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── projects accordion ───────── -->
+<section class="gallery" id="projects">
+  <div class="gallery__top">
+    <h2>כותרת הסקשן</h2>
+    <p>לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה, דס איאקוליס וולופטה דיאם. וסטיבולום אי מוסן מנת. קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקט ולנדיניה מנגפק.</p>
+  </div>
+  <div class="gallery__wrap" id="accordion">
+    <article class="card active">
+      <div class="card__media ph" style="--c1:#8fa3b3;--c2:#4f6475"></div>
+      <div class="card__info"><div class="card__item">
+        <div class="card__status">בשיווק</div>
+        <div class="card__title">Project Name 01</div>
+        <div class="card__sub">תת כותרת לדוגמה</div>
+        <a class="card__btn" href="#">לפרטים נוספים</a>
+      </div></div>
+    </article>
+    <article class="card">
+      <div class="card__media ph" style="--c1:#c9b79c;--c2:#8c7656"></div>
+      <div class="card__info"><div class="card__item">
+        <div class="card__status">בבניה, מכור</div>
+        <div class="card__title">Project Name 02</div>
+        <div class="card__sub">תת כותרת לדוגמה</div>
+        <a class="card__btn" href="#">לפרטים נוספים</a>
+      </div></div>
+    </article>
+    <article class="card">
+      <div class="card__media ph" style="--c1:#7fa6a6;--c2:#3f6b6e"></div>
+      <div class="card__info"><div class="card__item">
+        <div class="card__status">בבניה, בשיווק</div>
+        <div class="card__title">Project Name 03</div>
+        <div class="card__sub">תת כותרת לדוגמה</div>
+        <a class="card__btn" href="#">לפרטים נוספים</a>
+      </div></div>
+    </article>
+    <article class="card">
+      <div class="card__media ph" style="--c1:#a89aa8;--c2:#5d4f66"></div>
+      <div class="card__info"><div class="card__item">
+        <div class="card__status">מאוכלסים</div>
+        <div class="card__title">Project Name 04</div>
+        <div class="card__sub">תת כותרת לדוגמה</div>
+        <a class="card__btn" href="#">לפרטים נוספים</a>
+      </div></div>
+    </article>
+    <article class="card">
+      <div class="card__media ph" style="--c1:#b7a58a;--c2:#6e5f48"></div>
+      <div class="card__info"><div class="card__item">
+        <div class="card__status">מאוכלסים</div>
+        <div class="card__title">Project Name 05</div>
+        <div class="card__sub">תת כותרת לדוגמה</div>
+        <a class="card__btn" href="#">לפרטים נוספים</a>
+      </div></div>
+    </article>
+    <article class="card">
+      <div class="card__media ph" style="--c1:#8aa07f;--c2:#46603f"></div>
+      <div class="card__info"><div class="card__item">
+        <div class="card__status">מכור</div>
+        <div class="card__title">Project Name 06</div>
+        <div class="card__sub">תת כותרת לדוגמה</div>
+        <a class="card__btn" href="#">לפרטים נוספים</a>
+      </div></div>
+    </article>
+    <article class="card">
+      <div class="card__media ph" style="--c1:#9aa6b8;--c2:#4d5a72"></div>
+      <div class="card__info"><div class="card__item">
+        <div class="card__status">מאוכלסים</div>
+        <div class="card__title">Project Name 07</div>
+        <div class="card__sub">תת כותרת לדוגמה</div>
+        <a class="card__btn" href="#">לפרטים נוספים</a>
+      </div></div>
+    </article>
+  </div>
+</section>
+
+<!-- ───────── split: text + image ───────── -->
+<section class="split">
+  <div class="split__text">
+    <div class="split__inner">
+      <h2>כותרת קטע ראשון</h2>
+      <div class="content">
+        <p>לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אי מוסן מנת. קונדימנטום קורוס בליקרה.</p>
+        <ol class="points">
+          <li>נקודה ראשונה לדוגמה</li>
+          <li>נקודה שנייה – טקסט קצר</li>
+          <li>נקודה שלישית עם טקסט ארוך מעט יותר</li>
+          <li>נקודה רביעית עם טקסט ארוך הרבה יותר כדי להדגים גלישה לשורה נוספת</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="split__media"><div class="ph" style="--c1:#a9c3c9;--c2:#5b8590"></div></div>
+</section>
+
+<!-- ───────── split reverse: carousel + video ───────── -->
+<section class="split split--reverse" style="margin-top:50px">
+  <div class="split__text">
+    <div class="split__inner">
+      <h2 class="carousel-title">כותרת קרוסלה</h2>
+      <div class="carousel" id="carousel">
+        <div class="carousel__track" id="track">
+          <div class="carousel__item"><h3>כותרת פריט ראשון</h3><p>לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה.</p></div>
+          <div class="carousel__item"><h3>כותרת פריט שני</h3><p>דס איאקוליס וולופטה דיאם. וסטיבולום אי מוסן מנת. קונדימנטום קורוס בליקרה.</p></div>
+          <div class="carousel__item"><h3>כותרת פריט שלישי</h3><p>ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם.</p></div>
+        </div>
+        <div class="dots" id="dots"><button class="on" aria-label="1"></button><button aria-label="2"></button><button aria-label="3"></button></div>
+      </div>
+    </div>
+  </div>
+  <a class="split__media video" href="#">
+    <div class="ph"></div>
+    <div class="video__text"><h2>SECTION TITLE</h2><p>DISCOVER</p></div>
+  </a>
+</section>
+
+<!-- ───────── scroll story ───────── -->
+<section class="story" id="story">
+  <div class="story__sticky">
+    <div class="story__media ph"></div>
+    <div class="story__overlay">
+      <h2>כותרת קטע מרכזי</h2>
+      <p>לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה, דס איאקוליס וולופטה דיאם. וסטיבולום אי מוסן מנת.</p>
+    </div>
+    <div class="tiles">
+      <div class="tile">
+        <div class="ph" style="--c1:#1b2230;--c2:#05070c"></div>
+        <h3>כותרת כרטיס ראשון</h3>
+        <p>לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה, דס איאקוליס וולופטה דיאם. וסטיבולום אי מוסן מנת.</p>
+      </div>
+      <div class="tile">
+        <div class="ph" style="--c1:#9ab8cf;--c2:#4f7a99"></div>
+        <h3>כותרת כרטיס שני</h3>
+        <p>קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקט ולנדיניה מנגפק. ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש.</p>
+      </div>
+      <div class="tile">
+        <div class="ph" style="--c1:#2b3a8f;--c2:#0b1240"></div>
+        <h3>כותרת כרטיס שלישי</h3>
+        <p>תרבנך וסתעד לכנו סתשם השמה – לתכי מורגם בורק? לתיג ישבעס. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית קולהע צופעט.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── contact ───────── -->
+<section class="newsletter" id="contact">
+  <div class="container">
+    <h2>צרו קשר</h2>
+    <form id="contactForm" novalidate>
+      <div class="form-row">
+        <input type="text" name="name" placeholder="שם מלא *" required>
+        <input type="email" name="email" placeholder="אימייל *" required>
+        <input type="tel" name="phone" placeholder="טלפון *" required>
+        <button class="btn-submit" type="submit">שלח/י</button>
+      </div>
+      <label class="consent">
+        <input type="checkbox" name="consent">
+        <span>אני מאשר/ת קבלת עדכונים וחומר פרסומי בדוא"ל, SMS ו-WhatsApp. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית, בהתאם ל-<u>תקנון</u> ול-<u>מדיניות הפרטיות</u>. ניתן להסיר את ההסכמה בכל עת.</span>
+      </label>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ───────── footer ───────── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="f-cols">
+      <div class="f-col">
+        <h4>פרויקטים</h4>
+        <a href="#projects">כל הפרויקטים</a>
+        <a href="#projects">בשיווק</a>
+        <a href="#projects">מאוכלסים</a>
+      </div>
+      <div class="f-col">
+        <h4>שירות לקוחות</h4>
+        <a href="#">מועדון לקוחות</a>
+        <a href="#contact">צרו קשר</a>
+      </div>
+      <div class="f-col">
+        <h4>מידע כללי</h4>
+        <a href="#">אודות החברה</a>
+        <a href="#">תקנון האתר</a>
+        <a href="#">הצהרת נגישות</a>
+        <a href="#">מדיניות פרטיות</a>
+        <a href="#">מגזין גלובל</a>
+      </div>
+    </div>
+    <a class="logo f-logo" style="position:static;transform:none" href="#top" aria-label="Company Global">
+      <span class="logo__mark">Logo</span>
+      <span class="logo__sub">COMPANY GLOBAL</span>
+    </a>
+  </div>
+</footer>
+<div class="social">
+  <a href="#" aria-label="Facebook"><span>Facebook</span>
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M14 8V6.4c0-.7.2-1.1 1.3-1.1H17V2.2C16.600 2.100 15.600 2 14.600 2 12 2 10.300 3.600 10.300 6.200V8H7.500v3.300h2.800V22H14V11.300h2.700L17.200 8H14z"/></svg></a>
+  <a href="#" aria-label="Instagram"><span>Instagram</span>
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.200" cy="6.800" r="1" fill="#fff" stroke="none"/></svg></a>
+</div>
+
+<!-- ───────── floating contact bar ───────── -->
+<div class="float" aria-label="יצירת קשר מהירה">
+  <a class="glass" href="#contact">להשארת פרטים</a>
+  <a class="glass" href="tel:*0000">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M6.600 10.800a15.100 15.100 0 0 0 6.600 6.600l2.200-2.200a1 1 0 0 1 1-.25c1.100.37 2.300.57 3.600.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.500a1 1 0 0 1 1 1c0 1.300.2 2.500.57 3.600a1 1 0 0 1-.25 1l-2.200 2.200z"/></svg>
+    <span dir="ltr">*0000</span>
+  </a>
+  <a class="wa" href="#" aria-label="WhatsApp">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.600 15.100L2 22l5-1.300A10 10 0 1 0 12 2zm5.200 14c-.2.600-1.300 1.200-1.800 1.200-.5.100-1 .2-3.300-.7-2.800-1.200-4.600-4-4.700-4.200-.1-.2-1.100-1.500-1.100-2.800s.7-2 .9-2.300c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500l.9 2.100c.1.200.1.400 0 .5l-.3.500-.4.400c-.1.200-.3.300-.1.600.2.300.8 1.300 1.700 2.100 1.200 1 2.100 1.300 2.400 1.500.3.100.5.100.6-.1l.9-1c.2-.3.400-.2.600-.1l2 .9c.3.200.5.200.5.400.1.100.1.700-.1 1.300z"/></svg>
+  </a>
+</div>
+
+<!-- ───────── cookies ───────── -->
+<div class="cookies" id="cookies" role="dialog" aria-label="Cookies">
+  <p><b>אנו משתמשים בקבצי Cookies כדי לשפר את חוויית המשתמש שלכם.</b> לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית – על ידי לחיצה על "אישור" אתם נותנים את הסכמתכם. <u>מדיניות הפרטיות</u></p>
+  <button id="cookiesOk">אישור</button>
+</div>
+
+<script>
+(function(){
+  var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+
+  /* header: transparent over hero, solid after scroll */
+  var header=$('#header'), story=$('#story'), menu=$('#menu');
+  function onScroll(){
+    header.classList.toggle('is-solid', window.scrollY>20 || menu.classList.contains('open'));
+    if(story && window.innerWidth>990){
+      var r=story.getBoundingClientRect(), p=(60-r.top)/550;
+      story.style.setProperty('--p', Math.max(0,Math.min(1,p)).toFixed(3));
+    }
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+
+  /* mobile menu */
+  var btn=$('#menuBtn');
+  btn.addEventListener('click',function(){
+    var open=menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open);
+    document.body.style.overflow=open?'hidden':'';
+    onScroll();
+  });
+  $$('#menu a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open');document.body.style.overflow='';onScroll()})});
+
+  /* projects accordion */
+  var cards=$$('.card');
+  function activate(c){cards.forEach(function(x){x.classList.toggle('active',x===c)})}
+  cards.forEach(function(c){
+    c.addEventListener('mouseenter',function(){activate(c)});
+    c.addEventListener('focusin',function(){activate(c)});
+    c.addEventListener('click',function(){activate(c)});
+  });
+
+  /* carousel (RTL, loops, autoplay) */
+  var track=$('#track'), dots=$$('#dots button'), idx=0, timer;
+  function go(i){
+    idx=(i+dots.length)%dots.length;
+    track.style.transform='translateX('+(idx*100)+'%)';
+    dots.forEach(function(d,n){d.classList.toggle('on',n===idx)});
+  }
+  function play(){clearInterval(timer);timer=setInterval(function(){go(idx+1)},4000)}
+  dots.forEach(function(d,n){d.addEventListener('click',function(){go(n);play()})});
+  play();
+
+  /* cookies */
+  var ck=$('#cookies');
+  try{ if(localStorage.getItem('mock_cookies_ok')) ck.hidden=true; }catch(e){}
+  $('#cookiesOk').addEventListener('click',function(){
+    ck.hidden=true;
+    try{localStorage.setItem('mock_cookies_ok','1')}catch(e){}
+  });
+
+  /* form (dummy) */
+  $('#contactForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var b=$('.btn-submit',this); b.textContent='נשלח ✓'; setTimeout(function(){b.textContent='שלח/י'},2000);
+  });
+})();
+</script>
+</body>
+</html>
